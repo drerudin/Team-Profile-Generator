@@ -21,7 +21,7 @@ const generateTeam = team => {
         <div card "employee-card">
             <div class="card-header">
                 <h2 class="card-title">${engineer.getName()}</h2>
-                <h3 class-"card-title"><i class="fa-solid fa-mug-hot"></i>${engineer.getRole()}</h3>
+                <h3 class-"card-title"><i class="fa-solid fa-glasses"></i>${engineer.getRole()}</h3>
             </div>
             <div>
                 <ul class=list-group">
@@ -38,7 +38,7 @@ const generateTeam = team => {
         <div card "employee-card">
         <div class="card-header">
             <h2 class="card-title">${intern.getName()}</h2>
-            <h3 class-"card-title"><i class="fa-solid fa-mug-hot"></i>${intern.getRole()}</h3>
+            <h3 class-"card-title"><<i class="fa-solid fa-user-graduate">></i>${intern.getRole()}</h3>
         </div>
         <div>
             <ul class=list-group">
