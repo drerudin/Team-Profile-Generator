@@ -1,6 +1,14 @@
 const fs = require('fs')
 const inquirer = require('inquirer');
+const Employee = require('../lib/Employee')
+const Engineer = require("../lib/Engineer");
+const Intern = require("../lib/Intern");
+const Manager = require("../lib/Manager")
+import generateTeam from ('./dist/page-template')
 
+
+
+function createManager() {
 inquirer
     .prompt({
         type: 'list',
@@ -58,5 +66,7 @@ inquirer
         idArray.push(answers.managerId)
         createTeam()
     })
+}
 
+createManager(generateTeam);
 
