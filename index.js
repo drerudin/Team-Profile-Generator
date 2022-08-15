@@ -6,8 +6,8 @@ const Manager = require("./lib/Manager");
 const pageTemplate = require('./src/page-template');
 const generateTeam = require("./src/page-template");
 const writeFile = require("./src/generate-site");
-const team = require('./src/page-template');
-
+const team = [];
+const idArray = [];
 
 
 inquirer
