@@ -1,12 +1,12 @@
 const fs = require('fs')
 const inquirer = require('inquirer');
-const Employee = require('../lib/Employee')
-const Engineer = require("../lib/Engineer");
-const Intern = require("../lib/Intern");
-const Manager = require("../lib/Manager");
-const pageTemplate = require('./dist/page-template');
-const generateTeam = require("./dist/page-template")
-const writeFile = require("./src/generate-site")
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+const Manager = require("./lib/Manager");
+const pageTemplate = require('./src/page-template');
+const generateTeam = require("./src/page-template");
+const writeFile = require("./src/generate-site");
+const team = require('./src/page-template');
 
 
 
@@ -21,10 +21,10 @@ inquirer
     .then ((userChoice) => {
         switch (userChoice.role){
             case "Engineer":
-                addEngineer()
+                new Engineer()
                 break
             case "Intern":
-                addIntern()
+                new Intern()
                 break
             default:
         }
@@ -55,7 +55,13 @@ inquirer
         type: 'input',
         message: "What is your manager's office number?",
         name: 'officeNumber'
-    })
+    },
+    {
+        type: 'input',
+        message: "What school did you finish?",
+        name: 'school'
+    }
+    )
 
     .then ((answers) => {
         const manager = new Manager(
@@ -63,7 +69,7 @@ inquirer
             answers.managerId,
             answers.managerEmail
         )
-        teamMembers.push(manager)
+        team.push(manager)
         idArray.push(answers.managerId)
         createTeam()
     })
