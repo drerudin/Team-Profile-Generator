@@ -92,7 +92,7 @@ function createEngineer() {
     .then ((userChoice) => {
        // TODO: Create Engineer
 
-       const newEngineer = new Engineer(userChoice)
+       const newEngineer = new Engineer(userChoice.name, userChoice.id, userChoice.email, userChoice.github)
        team.push(newEngineer)
 
        createTeam();
@@ -155,7 +155,7 @@ function createIntern() {
     .then ((userChoice) => {
        // TODO: Create Intern
 
-       const newIntern = new Intern(userChoice)
+       const newIntern = new Intern(userChoice.name, userChoice.id, userChoice.email, userChoice.school)
        team.push(newIntern)
 
        createTeam();
@@ -196,7 +196,7 @@ function createManager() {
     .then ((userChoice) => {
         // TODO: Create Engineer
  
-        const newManager = new Manager(userChoice)
+        const newManager = new Manager(userChoice.name, userChoice.id, userChoice.email, userChoice.officeNumber)
         team.push(newManager)
 
         createTeam()
