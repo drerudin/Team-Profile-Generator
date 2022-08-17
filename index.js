@@ -7,73 +7,201 @@ const pageTemplate = require('./src/page-template');
 const generateTeam = require("./src/page-template");
 const writeFile = require("./src/generate-site");
 const team = [];
-const idArray = [];
 
-
-inquirer
+function createTeam() {
+    inquirer
     .prompt({
         type: 'list',
         message: "What is your role?",
         name: 'role',
-        choices: ['Engineer', 'Intern', 'I dont have any more employees']
+        choices: ['Engineer', 'Intern', 'Manager', 'I dont have any more employees']
     },
     )
     .then ((userChoice) => {
         switch (userChoice.role){
             case "Engineer":
-                new Engineer()
+                createEngineer(userChoice)
                 break
             case "Intern":
-                new Intern()
+               createIntern(userChoice)
                 break
+            case "Manager":
+                createManager(userChoice)
+
             default:
+                const htmlData = generateTeam(team);
+                writeFile(htmlData);
+                // TODO: Build out the output with all the engineers, interns, and managers
         }
     });
+}
 
-inquirer
-    .prompt({
+function createEngineer() {
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            message: "What is your engineer's name?",
+            name: 'name',
+            validate: function(value) {
+                if (value !== "") {
+                    return true;
+                }
+
+                return "Please enter at least one character"
+            }
+        },
+        {
+            type: 'input',
+            message: "What is your engineer's ID?",
+            name: 'id',
+            validate: function(value) {
+                if (value !== "") {
+                    return true;
+                }
+
+                return "Please enter at least one character"
+            }
+        },
+        {
+            type: 'input',
+            message: "What is your engineer's email?",
+            name: 'email',
+            validate: function(value) {
+                if (value !== "") {
+                    return true;
+                }
+
+                return "Please submit a valid email."
+            }
+        },
+        {
+            type: 'input',
+            message: "What is your engineer's github tag?",
+            name: 'github',
+            validate: function(value) {
+                if (value !== "") {
+                    return true;
+                }
+
+                return "Please submit a valid github name."
+            }
+        }
+    ],
+    )
+    .then ((userChoice) => {
+       // TODO: Create Engineer
+
+       const newEngineer = new Engineer(userChoice)
+       team.push(newEngineer)
+
+       createTeam();
+    });
+}
+
+function createIntern() {
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            message: "What is your intern's name?",
+            name: 'name',
+            validate: function(value) {
+                if (value !== "") {
+                    return true;
+                }
+
+                return "Please enter at least one character"
+            }
+        },
+        {
+            type: 'input',
+            message: "What is your intern's ID?",
+            name: 'id',
+            validate: function(value) {
+                if (value !== "") {
+                    return true;
+                }
+
+                return "Please enter at least one character"
+            }
+        },
+        {
+            type: 'input',
+            message: "What is your intern's email?",
+            name: 'email',
+            validate: function(value) {
+                if (value !== "") {
+                    return true;
+                }
+
+                return "Please submit a valid email."
+            }
+        },
+        {
+            type: 'input',
+            message: "What is your intern's school?",
+            name: 'school',
+            validate: function(value) {
+                if (value !== "") {
+                    return true;
+                }
+
+                return "Please submit a valid school name."
+            }
+        }
+    ],
+    )
+    .then ((userChoice) => {
+       // TODO: Create Intern
+
+       const newIntern = new Intern(userChoice)
+       team.push(newIntern)
+
+       createTeam();
+    });
+}
+
+function createManager() {
+    inquirer
+    .prompt([
+        
+    {
         type: 'input',
         message: "What is your managers name?",
-        name: 'managerName',
+        name: 'name',
     },
     {
         type: 'input',
         message: 'What is your managers employee ID?',
-        name: 'managerId'
+        name: 'id'
     },
     {
         type: 'input',
         message: "What is your managers email?",
-        name: 'managerEmail',
-        validate: {
-            isEmail: true
+        name: 'email',
+        validate: function(value) {
+            if (value !== "") {
+                return true;
+            }
         }
-
-        },
-    
+        },    
     {
         type: 'input',
         message: "What is your manager's office number?",
         name: 'officeNumber'
-    },
-    {
-        type: 'input',
-        message: "What school did you finish?",
-        name: 'school'
-    }
+    }]
     )
 
-    .then ((answers) => {
-        const manager = new Manager(
-            answers.managerName,
-            answers.managerId,
-            answers.managerEmail
-        )
-        team.push(manager)
-        idArray.push(answers.managerId)
+    .then ((userChoice) => {
+        // TODO: Create Engineer
+ 
+        const newManager = new Manager(userChoice)
+        team.push(newManager)
+
         createTeam()
     })
+}
 
-
-    
-
+createTeam();
+module.exports = team;
