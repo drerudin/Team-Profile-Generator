@@ -8,7 +8,7 @@ const intern = require("../lib/Intern");
 const generateTeam = (team) => {
   const generateManager = (manager) => {
     return `
-        <div card class="employee-card">
+        <div card class="card" style="width: 18rem;">
             <div class="card-header">
                 <h2 class="card-title">${manager.getName()}</h2>
                     <h3 class="card-title"><i class="fa-solid fa-mug-hot"></i>${manager.getRole()}</h3>
@@ -25,7 +25,7 @@ const generateTeam = (team) => {
   };
   const generateEngineer = (engineer) => {
     return `
-        <div card class="employee-card">
+        <div card class="card" style="width: 18rem;">
             <div class="card-header">
                 <h2 class="card-title">${engineer.getName()}</h2>
                 <h3 class="card-title"><i class="fa-solid fa-glasses"></i>${engineer.getRole()}</h3>
@@ -42,7 +42,7 @@ const generateTeam = (team) => {
   };
   const generateIntern = (intern) => {
     return `
-        <div card class="employee-card">
+        <div card class="card" style="width: 18rem;">
         <div class="card-header">
             <h2 class="card-title">${intern.getName()}</h2>
             <h3 class="card-title"><i class="fa-solid fa-user-graduate"></i>${intern.getRole()}</h3>
@@ -92,7 +92,7 @@ module.exports = (team) => {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h1 class="text-center">My Team</h1>
+        <h1 class="text-center bg-danger">My Team</h1>
         <div class="container">
             <div class="row">
                 ${generateTeam(team)}
