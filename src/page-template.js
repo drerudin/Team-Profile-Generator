@@ -5,7 +5,11 @@ const manager = require("../lib/Manager");
 const engineer = require("../lib/Engineer");
 const intern = require("../lib/Intern");
 
+
+// generate the team using the team array
 const generateTeam = (team) => {
+
+    // generate manager html
   const generateManager = (manager) => {
     return `
         <div card class="card" style="width: 18rem; padding: 20px;">
@@ -23,6 +27,8 @@ const generateTeam = (team) => {
         </div>
         `;
   };
+
+  // generate engineer html
   const generateEngineer = (engineer) => {
     return `
         <div card class="card" style="width: 18rem; padding: 20px;">
@@ -40,6 +46,8 @@ const generateTeam = (team) => {
         </div>
         `;
   };
+
+  // generate intern html
   const generateIntern = (intern) => {
     return `
         <div card class="card" style="width: 18rem; padding: 20px;">
@@ -57,7 +65,7 @@ const generateTeam = (team) => {
     </div>
         `;
   };
-
+// loop through the team array and generate html for each team member
   const html = [];
   html.push(
     team
@@ -76,6 +84,8 @@ const generateTeam = (team) => {
   );
   return html.join("");
 };
+
+// template for the base html file
 module.exports = (team) => {
   return `
     <!DOCTYPE html>
@@ -92,9 +102,9 @@ module.exports = (team) => {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h1 class="text-center bg-danger">My Team</h1>
+        <h1 class="text-center bg-danger" style="padding:20px;">My Team</h1>
         <div class="container">
-            <div class="row" style=">
+            <div class="row" style="justify-content: space-between;">
                 ${generateTeam(team)}
             </div>
         </div>

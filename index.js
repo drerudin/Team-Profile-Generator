@@ -7,6 +7,8 @@ const generateTeam = require("./src/page-template");
 const writeFile = require("./src/generate-site");
 const team = [];
 
+// function to build the team array
+
 function createTeam() {
     inquirer
     .prompt({
@@ -30,10 +32,11 @@ function createTeam() {
             default:
                 const htmlData = generateTeam(team);
                 writeFile(htmlData);
-                // TODO: Build out the output with all the engineers, interns, and managers
         }
     });
 }
+
+// function to create the engineer object
 
 function createEngineer() {
     inquirer
@@ -89,7 +92,6 @@ function createEngineer() {
     ],
     )
     .then ((userChoice) => {
-       // TODO: Create Engineer
 
        const newEngineer = new Engineer(userChoice.name, userChoice.id, userChoice.email, userChoice.github)
        team.push(newEngineer)
@@ -97,6 +99,8 @@ function createEngineer() {
        createTeam();
     });
 }
+
+// function to create the intern object
 
 function createIntern() {
     inquirer
@@ -152,7 +156,6 @@ function createIntern() {
     ],
     )
     .then ((userChoice) => {
-       // TODO: Create Intern
 
        const newIntern = new Intern(userChoice.name, userChoice.id, userChoice.email, userChoice.school)
        team.push(newIntern)
@@ -160,6 +163,8 @@ function createIntern() {
        createTeam();
     });
 }
+
+// function to create the manager object
 
 function createManager() {
     inquirer
